@@ -390,3 +390,25 @@ print(task["done"])
 
 Common mistake: Tried to create a whole new dictionary just to update one value, when I could have changed just that one key directly.
 
+## Reinforcement: indexing + dictionaries
+What it is: A quick recap of the two ideas that caused the most bugs today - using an index to reach into a list (tasks[i]), and using a key to reach into a dictionary (task["key"]), and how they combine (tasks[i]["key"]).
+
+```python
+tasks = [{"text": "wake up", "done": False}, {"text": "eat", "done": True}]
+print(tasks[0]["text"])
+print(tasks[1]["done"])
+```
+
+Common mistake: Mixed up when to use [index] (position in a list) versus ["key"] (name in a dictionary) - they look similar but do different things.
+
+## Editing a dictionary value with new input
+What it is: Same idea as marking a task complete - find the task by index, then set one of its keys to a new value. The only difference is the new value comes from input() instead of always being True.
+
+```python
+task = {"text": "clean room", "done": False}
+task["text"] = "clean the whole house"
+print(task["text"])
+```
+
+Common mistake: Forgot that setting task["text"] to a new value completely replaces the old text - there's no way to get the original back once overwritten.
+

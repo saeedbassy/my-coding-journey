@@ -8,12 +8,13 @@ try:
 except:
     pass
 
-while choice != "5":
+while choice != "6":
     print("1. Add a task")
     print("2. View tasks")
     print("3. Delete a task")
     print("4. Mark task as complete")
-    print("5. Quit")
+    print("5. Edit a task")
+    print("6. Quit")
     choice = input("Choose a number: ")
     if choice == "1":
         user_task = input("Enter a task: ")
@@ -49,6 +50,15 @@ while choice != "5":
             for user_task in tasks:
                 f.write(user_task["text"] + "\n")
     elif choice == "5":
+        for index, user_task in enumerate(tasks):
+            print(str(index + 1) + ". " + user_task["text"])
+        edit_task = input("Which number do you want to edit? ")
+        task_replacement = input("Enter new task: ")
+        tasks[int(edit_task) - 1]["text"] = task_replacement
+        with open("tasks.txt", "w") as f:
+            for user_task in tasks:
+                f.write(user_task["text"] + "\n")
+    elif choice == "6":
         print("Quitting...")
         break
     else:
