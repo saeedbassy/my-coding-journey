@@ -423,3 +423,43 @@ print(sorted_tasks)
 
 Common mistake: Forgot that sorted() returns a new list instead of changing the original - so I need to assign the result to a variable (or reassign tasks) instead of expecting the original list to update on its own.
 
+## Reinforcement: full data flow recap
+What it is: A recap of how one task moves through your program - from file, into a dictionary, through the list, and back to file.
+
+```python
+# 1. Loading: turn each line into a dictionary
+tasks.append({"text": contents.strip(), "done": False})
+
+# 2. Reading: pull a value out by key
+print(tasks[0]["text"])
+
+# 3. Updating: find the right task by index, then change one key
+tasks[0]["done"] = True
+
+# 4. Saving: turn each dictionary back into a line of text
+f.write(user_task["text"] + "\n")
+```
+
+Common mistake: Thought of tasks[i] and task["key"] as interchangeable - they're not. One finds a task by position, the other finds a value by name, inside that task.
+
+## Saving multiple pieces of data on one line
+What it is: Right now each line in tasks.txt only has the task text. To also save whether it's done, we need a way to store two pieces of info on one line, then split them back apart when loading. A simple way: seperate them with a character that won't normally appear in a task, like |.
+
+```python
+f.write(user_task["text"] + "|" + str(user_task["done"]) + "\n")
+```
+
+Common mistake: Tried to save user_task["done"] without wrapping it in str() first, since it's True/False (a boolean), not text, and + only works between strings.
+
+## split() - breaking a string into pieces
+What it is: .split("|") breaks a string into a list of pieces, using | as the dividing point. So "clean room|False".split("|") gives you ["clean room", "False"] - a list with two items.
+
+```python
+line = "clean room|False"
+parts = line.split("|")
+print(parts[0])
+print(parts[1])
+```
+
+Common mistake: Forgot that everything from .split() comes back as a string - even "True" or "False" - so comparing it directly with if parts[1] == True doesn't work; it needs to be compared as text: if parts[1] == "True".
+

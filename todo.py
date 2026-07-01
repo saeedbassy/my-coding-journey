@@ -4,7 +4,8 @@ choice = "0"
 try:
     with open("tasks.txt", "r") as file:
         for contents in file.readlines():
-            tasks.append({"text": contents.strip(), "done": False})
+            parts = contents.strip().split("|")
+            tasks.append({"text": parts[0], "done": parts[1] == "True"})
 except:
     pass
 
@@ -22,7 +23,7 @@ while choice != "6":
         tasks.append(new_task)
         with open("tasks.txt", "w") as f:
             for user_task in tasks:
-                f.write(user_task["text"] + "\n")
+                f.write(user_task["text"] + "|" + str(user_task["done"]) + "\n")
     elif choice == "2":
         if len(tasks) == 0:
             print("No tasks yet.")
@@ -41,7 +42,7 @@ while choice != "6":
         tasks.pop(int(delete_task) - 1)
         with open("tasks.txt", "w") as f:
             for user_task in tasks:
-                f.write(user_task["text"] + "\n")
+                f.write(user_task["text"] + "|" + str(user_task["done"]) + "\n")
     elif choice == "4":
         for index, user_task in enumerate(tasks):
             print(str(index + 1) + ". " + user_task["text"])
@@ -49,7 +50,7 @@ while choice != "6":
         tasks[int(complete_task) - 1]["done"] = True
         with open("tasks.txt", "w") as f:
             for user_task in tasks:
-                f.write(user_task["text"] + "\n")
+                f.write(user_task["text"] + "|" + str(user_task["done"]) + "\n")
     elif choice == "5":
         for index, user_task in enumerate(tasks):
             print(str(index + 1) + ". " + user_task["text"])
@@ -58,7 +59,7 @@ while choice != "6":
         tasks[int(edit_task) - 1]["text"] = task_replacement
         with open("tasks.txt", "w") as f:
             for user_task in tasks:
-                f.write(user_task["text"] + "\n")
+                f.write(user_task["text"] + "|" + str(user_task["done"]) + "\n")
     elif choice == "6":
         print("Quitting...")
         break
