@@ -27,7 +27,8 @@ while choice != "6":
         if len(tasks) == 0:
             print("No tasks yet.")
         else:
-            for index, user_task in enumerate(tasks):
+            sorted_tasks = sorted(tasks, key=lambda t: t["done"])
+            for index, user_task in enumerate(sorted_tasks):
                 if user_task["done"] == True:
                     marker = "X"
                 else:

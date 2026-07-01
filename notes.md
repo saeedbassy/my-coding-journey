@@ -412,3 +412,14 @@ print(task["text"])
 
 Common mistake: Forgot that setting task["text"] to a new value completely replaces the old text - there's no way to get the original back once overwritten.
 
+## sorted() with a key function
+What it is: sorted() takes a list and returns a new, sorted version of it. By default it sorts by natural order (numbers small to large, letters A-Z). To sort by something custom - like a dictionary's "done" value - you give it a key, which tells it what to look for each item.
+
+```python
+tasks = [{"text": "eat", "done": True}, {"text": "sleep", "done": False}]
+sorted_tasks = sorted(tasks, key=lambda t: t["done"])
+print(sorted_tasks)
+```
+
+Common mistake: Forgot that sorted() returns a new list instead of changing the original - so I need to assign the result to a variable (or reassign tasks) instead of expecting the original list to update on its own.
+
