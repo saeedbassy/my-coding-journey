@@ -288,3 +288,82 @@ while keep_playing == "yes":
     keep_playing = input("Play again? (yes/no): ")
 ```
 
+## When to use try/except
+Use it whenever your program accepts user input or reads from an external source - anywhere something unpredictable could go wrong and crash the programS
+
+## File I/O
+What it is: reading from and writing to files so data persists between runs of your program
+
+```python
+with open("tasks.txt", "w") as file:
+    file.write("Buy groceries\n")
+```
+
+```python
+with open("tasks.txt", "r") as file:
+    contents = file.read()
+    print(contents)
+```
+
+## File modes
+"w" = write: creates the file if it doesn't exist, or overwrites it if it does
+"r" = read: reads the contents of an existing file
+
+## FILE WRITING BASICS
+- open(filename, "w") opens a file in write mode
+- "w" mode OVERWRITES the entire file each time (unlike "a" which appends)
+- Since we're rewriting the whole tasks list each time, "w" is correct here
+- Using "with open(...) as f:" automatically closes the file when done
+- To write each task on its own line, use f.write() and add "\n" at the end of each line
+- You'll need a for loop to go through your tasks list and write each one
+
+## DELETING FROM A LIST
+- list.pop(index) removes and returns the item at that index
+- Lists and indexed are indexed starting at 0, but you'll show tasks to the user starting at 1
+- So, if the user picks "task number 2," you need to pop(1) - subtract 1 to convert
+- After popping, you still need to rewrite tasks.txt with the updated list (same pattern as your save-after-add code, just reused)
+- Always validate the number the user enters is a real index before popping (or you'll crash on a bad input)
+
+## enuerate()
+What it is: A function that loops through a list and gives you both the position (index) and the value at the same time, instead of just the value alone.
+
+```python
+for index, item in enumerate(["apple", "banana", "cherry"]):
+    print(index + 1, item)
+```
+
+Mistake I made: Forgot that enumerate() starts counting at 0, so mt displayed list was off by one until I added + 1.
+
+## str()
+
+```python
+str(5)
+```
+
+Mistake I made: Tried to combine a number and text with + without converting the number to a string first, which caused a TypeError.
+
+## pop()
+What it is: list.pop(index) removes the item at that position from the list and gives it back to you. Since lists start counting at 0 but you show tasks to the user starting at 1, you need to subtract 1 from whatever the number the user types in before calling pop().
+
+```python
+sample = ["a", "b", "c"]
+sample.pop(1)
+```
+
+Mistake I made: Forgot to subtract 1 from the user's input before calling pop(), so it deleted the wrong task (one after the one I meant).
+
+## break
+What it is: Immediately exits the nearest loop it's inside, skipping any remaining code in that loop and everything afer it in that iteration.
+
+```python
+while True:
+    print("Quitting...")
+    break
+```
+
+Mistake I made: Printed "Quitting..." but forgot to actually stop the loop, so the menu kept looping forever after choosing to quit.
+
+## Clean testing data before a push
+What it is: Before committing, delete any leftover test tasks (like "Do laundry") from tasks.txt so your repo shows a clean, intentional starting state rather than scratch data from testing.
+
+Mistake I made: Pushed test data to GitHub without realizing it, so my repo history shows "Do laundry" as if it were a real task.
