@@ -332,7 +332,7 @@ for index, item in enumerate(["apple", "banana", "cherry"]):
     print(index + 1, item)
 ```
 
-Mistake I made: Forgot that enumerate() starts counting at 0, so mt displayed list was off by one until I added + 1.
+Common mistake: Forgot that enumerate() starts counting at 0, so mt displayed list was off by one until I added + 1.
 
 ## str()
 
@@ -340,7 +340,7 @@ Mistake I made: Forgot that enumerate() starts counting at 0, so mt displayed li
 str(5)
 ```
 
-Mistake I made: Tried to combine a number and text with + without converting the number to a string first, which caused a TypeError.
+Common mistake: Tried to combine a number and text with + without converting the number to a string first, which caused a TypeError.
 
 ## pop()
 What it is: list.pop(index) removes the item at that position from the list and gives it back to you. Since lists start counting at 0 but you show tasks to the user starting at 1, you need to subtract 1 from whatever the number the user types in before calling pop().
@@ -350,7 +350,7 @@ sample = ["a", "b", "c"]
 sample.pop(1)
 ```
 
-Mistake I made: Forgot to subtract 1 from the user's input before calling pop(), so it deleted the wrong task (one after the one I meant).
+Common mistake: Forgot to subtract 1 from the user's input before calling pop(), so it deleted the wrong task (one after the one I meant).
 
 ## break
 What it is: Immediately exits the nearest loop it's inside, skipping any remaining code in that loop and everything afer it in that iteration.
@@ -361,9 +361,32 @@ while True:
     break
 ```
 
-Mistake I made: Printed "Quitting..." but forgot to actually stop the loop, so the menu kept looping forever after choosing to quit.
+Common mistake: Printed "Quitting..." but forgot to actually stop the loop, so the menu kept looping forever after choosing to quit.
 
 ## Clean testing data before a push
 What it is: Before committing, delete any leftover test tasks (like "Do laundry") from tasks.txt so your repo shows a clean, intentional starting state rather than scratch data from testing.
 
-Mistake I made: Pushed test data to GitHub without realizing it, so my repo history shows "Do laundry" as if it were a real task.
+Common mistake: Pushed test data to GitHub without realizing it, so my repo history shows "Do laundry" as if it were a real task.
+
+## Storing tasks as dictionaries
+What it is: Right now each task is just a string. To track whether a task is done, each task needs two pieces of info - the text and a done/not-done status - so instead of a string, each task becomes a small dictionary with two keys.
+
+```python
+task = {"text": "buy groceries", "done": False}
+print(task["text"])
+print(task["done"])
+```
+
+Common mistake: Tried to keep tasks as plain strings and add a seperate "done" list to match up with them by position - this got confusing fast. Combining both pieces into one dictionary per task keeps everything together.
+
+## Changing a dictionary value
+What it is: You can update the value stored under a key in a dictionary the same way you access it - using dictionary[key] = new_value. This overwrites whatever was there before.
+
+```python
+task = {"text": "clean room", "done": False}
+task["done"] = True
+print(task["done"])
+```
+
+Common mistake: Tried to create a whole new dictionary just to update one value, when I could have changed just that one key directly.
+
