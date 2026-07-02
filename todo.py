@@ -9,13 +9,14 @@ try:
 except:
     pass
 
-while choice != "6":
+while choice != "7":
     print("1. Add a task")
     print("2. View tasks")
     print("3. Delete a task")
     print("4. Mark task as complete")
     print("5. Edit a task")
-    print("6. Quit")
+    print("6. Filter tasks by priority")
+    print("7. Quit")
     choice = input("Choose a number: ")
     if choice == "1":
         user_task = input("Enter a task: ")
@@ -62,6 +63,11 @@ while choice != "6":
             for user_task in tasks:
                 f.write(user_task["text"] + "|" + str(user_task["done"]) + "|" + user_task["priority"] + "\n")
     elif choice == "6":
+        priority_sort = input("Enter a priority level to sort by: ")
+        for user_task in tasks:
+            if user_task["priority"].lower() == priority_sort.lower():
+                print(user_task["text"])
+    elif choice == "7":
         print("Quitting...")
         break
     else:

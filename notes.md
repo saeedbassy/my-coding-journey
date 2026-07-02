@@ -501,3 +501,26 @@ print(task["text"] + " (" + task["priority"] + ")")
 ```
 
 Common mistake: forgot to wrap the added piece in the surrounding string correctly, so parantheses or spacing ended up in the wrong place and printed oddly (e.g. clean room(high) with no space).
+
+## Filtering a list with a condition
+What it is: looping through a list and only acting on items that match some condition, instead of every item.
+
+```python
+tasks = [{"text": "call Kayden", "priority": "high"}, {"text": "read Quran", "priority": "low"}]
+for task in tasks:
+    if task["priority"] == "high":
+        print(task["text"])
+```
+
+Common mistake: forgot the if check inside the loop and printed every task instead of just the matching ones.
+
+## .lower()
+What it is: converts every letter in a string to lowercase, without changing the original string (it returns a new one).
+
+```python
+text = "High"
+print(text.lower())
+```
+
+Common mistake: forgetting that .lower() doesn't change the variable itself - you have to either compare against the result directly, or reassign it back to the variable.
+
