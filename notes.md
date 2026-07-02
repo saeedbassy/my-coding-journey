@@ -556,3 +556,16 @@ print(completed_count)
 
 Common mistake: forgot to reset the counter to 0 before the loop starts, so it keps adding onto a leftover value from earlier in the program instead of starting fresh.
 
+## Searching a list by partial text match
+What it is: checking whether one string appears somewhere inside another, using the "in" keyword - useful for search, since the user won't always type the exact full task text.
+
+```python
+tasks = [{"text": "call Kayden"}, {"text": "read Quran"}]
+search_term = "kayden"
+for task in tasks:
+    if search_term in task["text"].lower():
+        print(task["text"])
+```
+
+Common mistake: forgot to lowercase both the search term and the task text before checking "in", so a search for "kayden" wouldn't match "call Kayden" due to the capital K.
+
