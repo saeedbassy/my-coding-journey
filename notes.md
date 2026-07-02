@@ -524,3 +524,35 @@ print(text.lower())
 
 Common mistake: forgetting that .lower() doesn't change the variable itself - you have to either compare against the result directly, or reassign it back to the variable.
 
+## Reinforcement: priority + filtering recap
+What it is: a recap connecting priority storage, display, and filtering.
+
+```python
+task = {"text": "call Kayden", "done": False, "priority": "high"}
+
+# Storing: priority comes from input() at creation time
+# Displaying: pull it out and show it alongside text
+print(task["text"] + " (" + task["priority"] + ")")
+
+# Filtering: compare user input against stored priority, case-insensitively
+user_choice = "High"
+if task ["priority"].lower() == user_choice.lower():
+    print(task["text"])
+```
+
+Common mistake: called .lower() on the dictionary key ("priority") instead of on the value that key holds (task["priority"]) - the brackets have to close before .lower() gets added.
+
+## Counting matches in a list
+What it is: looping through a list and using a counter to track how many items meet a condition - same pattern as counting evens in a list of numbers, just applied to dictionaries now.
+
+```python
+tasks = [{"done": True}, {"done": False}, {"done": True}]
+completed_count = 0
+for task in tasks:
+    if task["done"] == True:
+        completed_count = completed_count + 1
+print(completed_count)
+```
+
+Common mistake: forgot to reset the counter to 0 before the loop starts, so it keps adding onto a leftover value from earlier in the program instead of starting fresh.
+

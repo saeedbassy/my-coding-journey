@@ -31,12 +31,16 @@ while choice != "7":
             print("No tasks yet.")
         else:
             sorted_tasks = sorted(tasks, key=lambda t: t["done"])
+            completed_tasks = 0
             for index, user_task in enumerate(sorted_tasks):
                 if user_task["done"] == True:
                     marker = "X"
                 else:
                     marker = " "
-                print(str(index + 1) + ". " + "[" + marker + "] " + user_task["text"] + " (" + user_task["priority"] + ")") 
+                if user_task["done"] == True:
+                    completed_tasks = completed_tasks + 1
+                print(str(index + 1) + ". " + "[" + marker + "] " + user_task["text"] + " (" + user_task["priority"] + ")")
+            print(str(completed_tasks) + " of " + str(len(tasks)) + " tasks complete.")
     elif choice == "3":
         for index, user_task in enumerate(tasks):
             print(str(index + 1) + ". " + user_task["text"])
