@@ -5,7 +5,7 @@ try:
     with open("tasks.txt", "r") as file:
         for contents in file.readlines():
             parts = contents.strip().split("|")
-            tasks.append({"text": parts[0], "done": parts[1] == "True"})
+            tasks.append({"text": parts[0], "done": parts[1] == "True", "priority": parts[2]})
 except:
     pass
 
@@ -19,11 +19,12 @@ while choice != "6":
     choice = input("Choose a number: ")
     if choice == "1":
         user_task = input("Enter a task: ")
-        new_task = {"text": user_task, "done": False}
+        user_priority = input("Enter a priority level (high/medium/low): ")
+        new_task = {"text": user_task, "done": False, "priority": user_priority}
         tasks.append(new_task)
         with open("tasks.txt", "w") as f:
             for user_task in tasks:
-                f.write(user_task["text"] + "|" + str(user_task["done"]) + "\n")
+                f.write(user_task["text"] + "|" + str(user_task["done"]) + "|" + user_task["priority"] + "\n")
     elif choice == "2":
         if len(tasks) == 0:
             print("No tasks yet.")
@@ -34,32 +35,32 @@ while choice != "6":
                     marker = "X"
                 else:
                     marker = " "
-                print(str(index + 1) + ". " + "[" + marker + "] " + user_task["text"]) 
+                print(str(index + 1) + ". " + "[" + marker + "] " + user_task["text"] + " (" + user_task["priority"] + ")") 
     elif choice == "3":
         for index, user_task in enumerate(tasks):
             print(str(index + 1) + ". " + user_task["text"])
-        delete_task = input("Which number do you want to delete? ")
+        delete_task = input("Enter a number to delete: ")
         tasks.pop(int(delete_task) - 1)
         with open("tasks.txt", "w") as f:
             for user_task in tasks:
-                f.write(user_task["text"] + "|" + str(user_task["done"]) + "\n")
+                f.write(user_task["text"] + "|" + str(user_task["done"]) + "|" + user_task["priority"] + "\n")
     elif choice == "4":
         for index, user_task in enumerate(tasks):
             print(str(index + 1) + ". " + user_task["text"])
-        complete_task = input("Which number do you want to mark complete? ")
+        complete_task = input("Enter a number to mark complete: ")
         tasks[int(complete_task) - 1]["done"] = True
         with open("tasks.txt", "w") as f:
             for user_task in tasks:
-                f.write(user_task["text"] + "|" + str(user_task["done"]) + "\n")
+                f.write(user_task["text"] + "|" + str(user_task["done"]) + "|" + user_task["priority"] + "\n")
     elif choice == "5":
         for index, user_task in enumerate(tasks):
             print(str(index + 1) + ". " + user_task["text"])
-        edit_task = input("Which number do you want to edit? ")
-        task_replacement = input("Enter new task: ")
+        edit_task = input("Enter a number to edit: ")
+        task_replacement = input("Enter a new task: ")
         tasks[int(edit_task) - 1]["text"] = task_replacement
         with open("tasks.txt", "w") as f:
             for user_task in tasks:
-                f.write(user_task["text"] + "|" + str(user_task["done"]) + "\n")
+                f.write(user_task["text"] + "|" + str(user_task["done"]) + "|" + user_task["priority"] + "\n")
     elif choice == "6":
         print("Quitting...")
         break
