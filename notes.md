@@ -602,3 +602,19 @@ for index, expense in enumerate(expenses, start=1):
 
 Common mistake:
 Forgetting that expense is the whole dictionary, not just a value - trying to print expense directly instead of expense["amount"] gives me the raw dict instead of a clean line.
+
+## building a running total per category
+
+What it is: instead of one grand total, you keep a running total for each category seperately, using a dictionary where each category name is a key and its total is the value.
+
+```python
+category_totals = {}
+for expense in expenses:
+    category = expense["category"]
+    amount = expense["amount"]
+    if category not in category_totals:
+        category_totals[category] = 0
+    category_totals[category] = cateogry_totals[category] + amount
+```
+
+Common mistake: trying to add to category_totals[category] before checking if that key exists yet - that throws a KeyError, which is why you check "if category not in category_totals" first and set it to 0.
