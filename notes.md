@@ -569,3 +569,36 @@ for task in tasks:
 
 Common mistake: forgot to lowercase both the search term and the task text before checking "in", so a search for "kayden" wouldn't match "call Kayden" due to the capital K.
 
+## Project: Budget Tracker
+What it is: a program to log expenses (amount + category) and show a running total, applying the same dictionary and file I/O skills from the To-Do app to a new problem.
+
+```python
+expense = {"amount": 12.50, "category": "food"}
+print(expense["amount"])
+```
+
+Common mistake: forgot that amounts typed in from input() come in as strings, so they need to be converted with float() before doing any math with them (like adding to a running total).
+
+## float()
+What it is: converts a string into a decimal number, so you can do math with it. Similar to int(), but keeps decimal places (like 12.50) instead of rounding to a whole number.
+
+```python
+price = float("12.50")
+print(price + 1)
+```
+
+Common mistake: used int() instead of float() for money values, which would either error out or chop off the cents entirely (e.g. "12.50" becoming 12).
+
+## looping through a list of dictionaries
+
+What it is:
+My expenses list holds a dictionary for each expense, like {"amount": 12.50, "category": "food"}. To view them all, I loop through the list with enumerate() so I get both a number and the dictionary itself, then I pull out the values I want using the keys.
+
+```python
+expenses = [{"amount": 12.50, "category": "food"}, {"amount": 5.00, "category": "gas"}]
+for index, expense in enumerate(expenses, start=1):
+    print(index, expense["amount"], expense["category"])
+```
+
+Common mistake:
+Forgetting that expense is the whole dictionary, not just a value - trying to print expense directly instead of expense["amount"] gives me the raw dict instead of a clean line.
