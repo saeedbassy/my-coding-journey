@@ -9,13 +9,14 @@ try:
 except:
     pass
 
-while choice != "6":
+while choice != "7":
     print("1. Add an expense")
     print("2. View expenses")
     print("3. View total spent")
     print("4. View spending by category")
     print("5. Delete an expense")
-    print("6. Quit")
+    print("6. Edit an expense")
+    print("7. Quit")
     choice = input("Choose a number: ")
     if choice == "1":
         expense_amount = float(input("Enter an expense amount: "))
@@ -48,6 +49,17 @@ while choice != "6":
             print(str(index) + ". " + "$" + str(user_expense["amount"]) + " " + user_expense["category"])
         delete_expense = input("Enter a nunber to delete: ")
         expenses.pop(int(delete_expense) - 1)
+        with open("expenses.txt", "w") as f:
+            for user_expense in expenses:
+                f.write(str(user_expense["amount"]) + "|" + user_expense["category"] + "\n")
+    if choice == "6":
+        for index, user_expense in enumerate(expenses, start=1):
+            print(str(index) + ". " + "$" + str(user_expense["amount"]) + " " + user_expense["category"])
+        edit_expense = input("Enter a number to edit: ")
+        expense_amount_replacement = input("Enter a new amount: ")
+        expense_replacement = input("Enter a new expense category: ")
+        expenses[int(edit_expense) - 1]["amount"] = float(expense_amount_replacement)
+        expenses[int(edit_expense) - 1]["category"] = expense_replacement
         with open("expenses.txt", "w") as f:
             for user_expense in expenses:
                 f.write(str(user_expense["amount"]) + "|" + user_expense["category"] + "\n")
