@@ -6,11 +6,13 @@
 3. [Lists](#lists)
 4. [Functions](#functions)
 5. [Dictionaries](#dictionaries)
-6. [Error Handling](#error-handling)
-7. [File I/O](#file-io)
-8. [Strings & Type Conversion](#strings--type-conversion)
-9. [Workflow Habits](#workflow-habits)
-10. [Quick Review](#quick-review)
+6. [Lists of Dictionaries](#lists-of-dictionaries)
+7. [Error Handling](#error-handling)
+8. [File I/O](#file-io)
+9. [Strings & Type Conversion](#strings--type-conversion)
+10. [Workflow Habits](#workflow-habits)
+11. [Project: To-Do List Manager](#project-to-do-list-manager)
+12. [Project: Budget Tracker](#project-budget-tracker)
 
 ---
 
@@ -130,8 +132,6 @@ while True:
     break
 ```
 
-**Common mistake:** Printed "Quitting..." but forgot to actually stop the loop, so the menu kept looping forever after choosing to quit.
-
 ### "Play again" loop pattern
 **What it is:** Wrap an entire program in a while loop so it repeats whenever the user wants to go again, resetting anything (like a score) each time.
 
@@ -179,8 +179,6 @@ numbers.sort()
 print(numbers)
 ```
 
-**Common mistake:** If `print()` comes before `.sort()` in your code, you'll see the original, unsorted order — Python runs top to bottom.
-
 ### Looping through two lists together
 **What it is:** You can store related data in separate lists, then loop through them in sync using their shared index.
 
@@ -199,8 +197,6 @@ for index, item in enumerate(["apple", "banana", "cherry"]):
     print(index + 1, item)
 ```
 
-**Common mistake:** Forgot that `enumerate()` starts counting at 0, so my displayed list was off by one until I added `+ 1`.
-
 ### pop()
 **What it is:** `list.pop(index)` removes the item at that position from the list and gives it back to you. Since lists start counting at 0 but you show items to the user starting at 1, you need to subtract 1 from whatever number the user types in before calling `pop()`.
 
@@ -208,8 +204,6 @@ for index, item in enumerate(["apple", "banana", "cherry"]):
 sample = ["a", "b", "c"]
 sample.pop(1)
 ```
-
-**Common mistake:** Forgot to subtract 1 from the user's input before calling `pop()`, so it deleted the wrong item (one after the one I meant). Also: always validate the number the user enters is a real index before popping, or you'll crash on bad input.
 
 ### sorted() with a key function
 **What it is:** `sorted()` takes a list and returns a **new**, sorted version of it. By default it sorts by natural order (numbers small to large, letters A-Z). To sort by something custom — like a dictionary's `"done"` value — you give it a `key`, which tells it what to look at for each item.
@@ -219,8 +213,6 @@ tasks = [{"text": "eat", "done": True}, {"text": "sleep", "done": False}]
 sorted_tasks = sorted(tasks, key=lambda t: t["done"])
 print(sorted_tasks)
 ```
-
-**Common mistake:** Forgot that `sorted()` returns a new list instead of changing the original — I need to assign the result to a variable (or reassign the original) instead of expecting it to update on its own.
 
 ---
 
@@ -251,8 +243,6 @@ def square(number):
 result = square(5)
 print(result)
 ```
-
-**Common mistake:** If a function returns a value but nothing stores it or prints it, the value just disappears — the function still ran, but the result is never used.
 
 ### Functions with multiple parameters
 **What it is:** A function can take more than one input, separated by commas.
@@ -328,8 +318,6 @@ print(task["text"])
 print(task["done"])
 ```
 
-**Common mistake:** Tried to keep tasks as plain strings and add a separate "done" list to match up with them by position — this got confusing fast. Combining both pieces into one dictionary keeps everything together.
-
 ### Changing a dictionary value
 **What it is:** You can update the value stored under a key in a dictionary the same way you access it — using `dictionary[key] = new_value`. This overwrites whatever was there before.
 
@@ -338,8 +326,6 @@ task = {"text": "clean room", "done": False}
 task["done"] = True
 print(task["done"])
 ```
-
-**Common mistake:** Tried to create a whole new dictionary just to update one value, when I could have changed just that one key directly.
 
 ### Editing a dictionary value with new input
 **What it is:** Same idea as above — find the item by index, then set one of its keys to a new value. The difference is the new value comes from `input()` instead of a fixed value like `True`.
@@ -350,7 +336,19 @@ task["text"] = "clean the whole house"
 print(task["text"])
 ```
 
-**Common mistake:** Forgot that setting `task["text"]` to a new value completely replaces the old text — there's no way to get the original back once overwritten.
+### Adding a new key to an existing dictionary structure
+**What it is:** Same pattern as adding any key — just one more piece added when the dictionary is first created (e.g. adding `"priority"` alongside `"text"` and `"done"`).
+
+```python
+task = {"text": "clean room", "done": False, "priority": "High"}
+print(task["priority"])
+```
+
+---
+
+## Lists of Dictionaries
+
+Everything in this section builds on the same idea: a list holds multiple dictionaries, and you loop through the list to reach each one.
 
 ### Combining index and key access
 **What it is:** Using an index to reach into a list (`tasks[i]`) and a key to reach into a dictionary (`task["key"]`) are two different things — but they combine when a list holds dictionaries: `tasks[i]["key"]`.
@@ -361,17 +359,99 @@ print(tasks[0]["text"])
 print(tasks[1]["done"])
 ```
 
-**Common mistake:** Mixed up when to use `[index]` (position in a list) versus `["key"]` (name in a dictionary) — they look similar but do different things.
-
-### Adding a new key to an existing dictionary structure
-**What it is:** Same pattern as adding any key — just one more piece added when the dictionary is first created (e.g. adding `"priority"` alongside `"text"` and `"done"`).
+### Looping through a list of dictionaries
+**What it is:** Loop through the list with `enumerate()` so you get both a number and the dictionary itself, then pull out the values you want using the keys.
 
 ```python
-task = {"text": "clean room", "done": False, "priority": "High"}
-print(task["priority"])
+expenses = [{"amount": 12.50, "category": "food"}, {"amount": 5.00, "category": "gas"}]
+for index, expense in enumerate(expenses, start=1):
+    print(index, expense["amount"], expense["category"])
 ```
 
-**Common mistake:** Forgot to add the new key everywhere a dictionary of this kind gets created — not just when adding new items, but in the code that loads old saved data too — which caused a `KeyError` on data saved before the new key existed.
+### Displaying an extra dictionary value
+**What it is:** Same pattern as showing one piece of data, just adding another piece pulled from the same dictionary onto the `print()` line.
+
+```python
+task = {"text": "clean room", "priority": "high"}
+print(task["text"] + " (" + task["priority"] + ")")
+```
+
+### Filtering a list with a condition
+**What it is:** Looping through a list and only acting on items that match some condition, instead of every item.
+
+```python
+tasks = [{"text": "call Kayden", "priority": "high"}, {"text": "read Quran", "priority": "low"}]
+for task in tasks:
+    if task["priority"] == "high":
+        print(task["text"])
+```
+
+### Priority + filtering recap
+**What it is:** A recap connecting priority storage, display, and filtering.
+
+```python
+task = {"text": "call Kayden", "done": False, "priority": "high"}
+
+# Storing: priority comes from input() at creation time
+# Displaying: pull it out and show it alongside text
+print(task["text"] + " (" + task["priority"] + ")")
+
+# Filtering: compare user input against stored priority, case-insensitively
+user_choice = "High"
+if task["priority"].lower() == user_choice.lower():
+    print(task["text"])
+```
+
+### Counting matches in a list
+**What it is:** Looping through a list and using a counter to track how many items meet a condition — same pattern as counting evens in a list of numbers, just applied to dictionaries now.
+
+```python
+tasks = [{"done": True}, {"done": False}, {"done": True}]
+completed_count = 0
+for task in tasks:
+    if task["done"] == True:
+        completed_count = completed_count + 1
+print(completed_count)
+```
+
+### Searching a list by partial text match
+**What it is:** Checking whether one string appears somewhere inside another, using the `in` keyword — useful for search, since the user won't always type the exact full task text.
+
+```python
+tasks = [{"text": "call Kayden"}, {"text": "read Quran"}]
+search_term = "kayden"
+for task in tasks:
+    if search_term in task["text"].lower():
+        print(task["text"])
+```
+
+### Building a running total per category
+**What it is:** Instead of one grand total, keep a running total for each category separately, using a dictionary where each category name is a key and its total is the value.
+
+```python
+category_totals = {}
+for expense in expenses:
+    category = expense["category"]
+    amount = expense["amount"]
+    if category not in category_totals:
+        category_totals[category] = 0
+    category_totals[category] = category_totals[category] + amount
+```
+
+### Reading a saved file into a list at startup
+**What it is:** When your program starts, you check if a save file exists and load its contents back into your list, so you pick up where you left off instead of starting empty every time. Wrapping it in `try`/`except` handles the first run, when the file doesn't exist yet.
+
+```python
+expenses = []
+
+try:
+    with open("expenses.txt", "r") as file:
+        for line in file.readlines():
+            parts = line.strip().split("|")
+            expenses.append({"amount": float(parts[0]), "category": parts[1]})
+except:
+    pass
+```
 
 ---
 
@@ -430,8 +510,6 @@ with open("tasks.txt", "w") as f:
 f.write(user_task["text"] + "|" + str(user_task["done"]) + "\n")
 ```
 
-**Common mistake:** Tried to save `user_task["done"]` without wrapping it in `str()` first, since it's `True`/`False` (a boolean, not text) — and `+` only works between strings.
-
 ---
 
 ## Strings & Type Conversion
@@ -443,7 +521,13 @@ f.write(user_task["text"] + "|" + str(user_task["done"]) + "\n")
 str(5)
 ```
 
-**Common mistake:** Tried to combine a number and text with `+` without converting the number to a string first, which caused a `TypeError`.
+### float()
+**What it is:** Converts a string into a decimal number, so you can do math with it. Similar to `int()`, but keeps decimal places (like 12.50) instead of rounding to a whole number.
+
+```python
+price = float("12.50")
+print(price + 1)
+```
 
 ### split() — breaking a string into pieces
 **What it is:** `.split("|")` breaks a string into a list of pieces, using `|` as the dividing point.
@@ -455,7 +539,13 @@ print(parts[0])
 print(parts[1])
 ```
 
-**Common mistake:** Forgot that everything from `.split()` comes back as a string — even `"True"` or `"False"` — so comparing it directly with `if parts[1] == True` doesn't work; it needs to be compared as text: `if parts[1] == "True"`.
+### .lower()
+**What it is:** Converts every letter in a string to lowercase, without changing the original string (it returns a new one).
+
+```python
+text = "High"
+print(text.lower())
+```
 
 ---
 
@@ -464,13 +554,11 @@ print(parts[1])
 ### Clean testing data before a push
 **What it is:** Before committing, delete any leftover test data from your save files (like `tasks.txt`) so your repo shows a clean, intentional starting state rather than scratch data from testing.
 
-**Common mistake:** Pushed test data to GitHub without realizing it, so my repo history shows things like "Do laundry" as if it were a real task.
-
 ---
 
-## Quick Review
+## Project: To-Do List Manager
 
-A condensed look at how these pieces work together in the To-Do List Manager — loading, sorting, and saving a task with multiple pieces of data:
+A condensed look at how these pieces work together — loading, sorting, and saving a task with multiple pieces of data:
 
 ```python
 # Loading: split a saved line back into its pieces, rebuild the dictionary
@@ -492,129 +580,15 @@ f.write(user_task["text"] + "|" + str(user_task["done"]) + "\n")
 
 The core idea to remember: `tasks[i]` finds an item by **position**, `task["key"]` finds a value by **name** inside that item, and `tasks[i]["key"]` combines both.
 
-## Displaying an extra dictionary value
-What it is: same pattern as showing "text", just adding another piece pulled from the same dictionary onto the print() line.
-
-```python
-task = {"text": "clean room", "priority": "high"}
-print(task["text"] + " (" + task["priority"] + ")")
-```
-
-Common mistake: forgot to wrap the added piece in the surrounding string correctly, so parantheses or spacing ended up in the wrong place and printed oddly (e.g. clean room(high) with no space).
-
-## Filtering a list with a condition
-What it is: looping through a list and only acting on items that match some condition, instead of every item.
-
-```python
-tasks = [{"text": "call Kayden", "priority": "high"}, {"text": "read Quran", "priority": "low"}]
-for task in tasks:
-    if task["priority"] == "high":
-        print(task["text"])
-```
-
-Common mistake: forgot the if check inside the loop and printed every task instead of just the matching ones.
-
-## .lower()
-What it is: converts every letter in a string to lowercase, without changing the original string (it returns a new one).
-
-```python
-text = "High"
-print(text.lower())
-```
-
-Common mistake: forgetting that .lower() doesn't change the variable itself - you have to either compare against the result directly, or reassign it back to the variable.
-
-## Reinforcement: priority + filtering recap
-What it is: a recap connecting priority storage, display, and filtering.
-
-```python
-task = {"text": "call Kayden", "done": False, "priority": "high"}
-
-# Storing: priority comes from input() at creation time
-# Displaying: pull it out and show it alongside text
-print(task["text"] + " (" + task["priority"] + ")")
-
-# Filtering: compare user input against stored priority, case-insensitively
-user_choice = "High"
-if task ["priority"].lower() == user_choice.lower():
-    print(task["text"])
-```
-
-Common mistake: called .lower() on the dictionary key ("priority") instead of on the value that key holds (task["priority"]) - the brackets have to close before .lower() gets added.
-
-## Counting matches in a list
-What it is: looping through a list and using a counter to track how many items meet a condition - same pattern as counting evens in a list of numbers, just applied to dictionaries now.
-
-```python
-tasks = [{"done": True}, {"done": False}, {"done": True}]
-completed_count = 0
-for task in tasks:
-    if task["done"] == True:
-        completed_count = completed_count + 1
-print(completed_count)
-```
-
-Common mistake: forgot to reset the counter to 0 before the loop starts, so it keps adding onto a leftover value from earlier in the program instead of starting fresh.
-
-## Searching a list by partial text match
-What it is: checking whether one string appears somewhere inside another, using the "in" keyword - useful for search, since the user won't always type the exact full task text.
-
-```python
-tasks = [{"text": "call Kayden"}, {"text": "read Quran"}]
-search_term = "kayden"
-for task in tasks:
-    if search_term in task["text"].lower():
-        print(task["text"])
-```
-
-Common mistake: forgot to lowercase both the search term and the task text before checking "in", so a search for "kayden" wouldn't match "call Kayden" due to the capital K.
+---
 
 ## Project: Budget Tracker
-What it is: a program to log expenses (amount + category) and show a running total, applying the same dictionary and file I/O skills from the To-Do app to a new problem.
+
+**What it is:** A program to log expenses (amount + category) and show a running total, applying the same dictionary and file I/O skills from the To-Do app to a new problem.
 
 ```python
 expense = {"amount": 12.50, "category": "food"}
 print(expense["amount"])
 ```
 
-Common mistake: forgot that amounts typed in from input() come in as strings, so they need to be converted with float() before doing any math with them (like adding to a running total).
-
-## float()
-What it is: converts a string into a decimal number, so you can do math with it. Similar to int(), but keeps decimal places (like 12.50) instead of rounding to a whole number.
-
-```python
-price = float("12.50")
-print(price + 1)
-```
-
-Common mistake: used int() instead of float() for money values, which would either error out or chop off the cents entirely (e.g. "12.50" becoming 12).
-
-## looping through a list of dictionaries
-
-What it is:
-My expenses list holds a dictionary for each expense, like {"amount": 12.50, "category": "food"}. To view them all, I loop through the list with enumerate() so I get both a number and the dictionary itself, then I pull out the values I want using the keys.
-
-```python
-expenses = [{"amount": 12.50, "category": "food"}, {"amount": 5.00, "category": "gas"}]
-for index, expense in enumerate(expenses, start=1):
-    print(index, expense["amount"], expense["category"])
-```
-
-Common mistake:
-Forgetting that expense is the whole dictionary, not just a value - trying to print expense directly instead of expense["amount"] gives me the raw dict instead of a clean line.
-
-## building a running total per category
-
-What it is: instead of one grand total, you keep a running total for each category seperately, using a dictionary where each category name is a key and its total is the value.
-
-```python
-category_totals = {}
-for expense in expenses:
-    category = expense["category"]
-    amount = expense["amount"]
-    if category not in category_totals:
-        category_totals[category] = 0
-    category_totals[category] = cateogry_totals[category] + amount
-```
-
-Common mistake: trying to add to category_totals[category] before checking if that key exists yet - that throws a KeyError, which is why you check "if category not in category_totals" first and set it to 0.
+See [Lists of Dictionaries](#lists-of-dictionaries) for the enumerate/loop pattern used for viewing expenses, the running-total-per-category pattern used for the category breakdown feature, and the file-loading pattern used to make expenses persist between runs. See [float()](#strings--type-conversion) for why expense amounts need to be converted before doing math with them.

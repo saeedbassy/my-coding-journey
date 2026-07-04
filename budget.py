@@ -1,6 +1,14 @@
 expenses = []
 choice = "0"
 
+try:
+    with open("expenses.txt", "r") as file:
+        for contents in file.readlines():
+            parts = contents.strip().split("|")
+            expenses.append({"amount": float(parts[0]), "category": parts[1]})
+except:
+    pass
+
 while choice != "5":
     print("1. Add an expense")
     print("2. View expenses")
@@ -13,6 +21,9 @@ while choice != "5":
         expense_category = input("Enter a category: ")
         user_expense = {"amount": expense_amount, "category": expense_category}
         expenses.append(user_expense)
+        with open("expenses.txt", "w") as f:
+            for user_expense in expenses:
+                f.write(str(user_expense["amount"]) + "|" + user_expense["category"] + "\n")
     if choice == "2":
         for index, user_expense in enumerate(expenses, start=1):
             print(str(index) + ". " + "$" + str(user_expense["amount"]) + " " + user_expense["category"])

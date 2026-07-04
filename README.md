@@ -7,4 +7,4 @@ A collection of Python projects built while learning to code.
   classifies even/odd, finds min/max/average
 - **Quiz Game** (quiz_game.py) - dictionary-driven quiz with score tracking and replay
 - **To-Do List Manager** (todo.py) - menu-driven task manager with add, view, delete, edit, mark-complete, priority levels, filter-by-priority, and keyword seach functionality, with tasks sorted by completion status and saved to a file so that they persist between runs
-- **Budget Tracker** (budget.py) - menu-driven expense tracker with add expense, view all expenses, view total spent, and view spending broken down by category
+- **Budget Tracker** (budget.py) - menu-driven expense tracker with add expense, view all expenses, view total spent, and view spending broken down by category, with expenses saved to a file so they persist between runs
