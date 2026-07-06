@@ -592,3 +592,28 @@ print(expense["amount"])
 ```
 
 See [Lists of Dictionaries](#lists-of-dictionaries) for the enumerate/loop pattern used for viewing expenses, the running-total-per-category pattern used for the category breakdown feature, and the file-loading pattern used to make expenses persist between runs. See [float()](#strings--type-conversion) for why expense amounts need to be converted before doing math with them.
+
+## random.choice()
+
+What it is:
+Picks one random item out of a list (or string) each time it's called. To use it, you first need import random at the very top of your file - Python keeps random-related tools in a seperate module you have to bring in yourself.
+
+```python
+import random
+
+letters = ["a", "b", "c", "d"]
+print(random.choice(letters))
+```
+
+## "".join()
+
+What it is:
+Combines every item in a list into a single string, with nothing (or what ever you put in the quotes) between each item. Since random_password is currently a list of seperate characters, join() glues them all together into one password string.
+
+```python
+letters = ["a", "B", "3", "!"]
+password = "".join(letters)
+print(password)
+```
+
+This prints aB3! - one combined string instead of a list with commas and brackets.
