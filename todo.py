@@ -40,7 +40,7 @@ while choice != "8":
                     marker = " "
                 if user_task["done"] == True:
                     completed_tasks = completed_tasks + 1
-                print(str(index + 1) + ". " + "[" + marker + "] " + user_task["text"] + " (" + user_task["priority"] + ")")
+                print(f"{index + 1}. [{marker}] {user_task["text"]} ({user_task["priority"]})")
             print(str(completed_tasks) + " of " + str(len(tasks)) + " tasks complete.")
     elif choice == "3":
         for index, user_task in enumerate(tasks):
