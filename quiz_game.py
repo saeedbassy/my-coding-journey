@@ -12,5 +12,5 @@ while keep_playing == "yes":
         result = input(question)
         if result == quiz[question]:
             score = score + 1
-    print("You scored " + str(score) + " out of 3.")
+    print(f"You scored {score} out of 3.")
     keep_playing = input("Play again? (yes/no): ")
