@@ -617,3 +617,12 @@ print(password)
 ```
 
 This prints aB3! - one combined string instead of a list with commas and brackets.
+
+### f-strings
+**What it is:** A cleaner way to build strings with variables mixed in, using `f"..."` and `{variable}` placeholders - no more `+` and `str()` chains.
+
+```python
+name = "Saeed"
+age = 16
+print(f"{name} is {age} years old")
+```

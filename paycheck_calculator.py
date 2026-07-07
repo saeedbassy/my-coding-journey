@@ -10,4 +10,4 @@ while keep_going == "yes":
 total_earnings = 0
 for user_shift in shifts:
     total_earnings = float(total_earnings) + user_shift["hours"] * user_shift["rate"]
-print("You will earn $" + str(float(total_earnings)))
+print(f"You will earn ${total_earnings}")
