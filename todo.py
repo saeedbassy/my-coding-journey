@@ -68,10 +68,9 @@ while choice != "8":
             for user_task in tasks:
                 f.write(user_task["text"] + "|" + str(user_task["done"]) + "|" + user_task["priority"] + "\n")
     elif choice == "6":
-        priority_sort = input("Enter a priority level to sort by: ")
-        for user_task in tasks:
-            if user_task["priority"].lower() == priority_sort.lower():
-                print(user_task["text"])
+        priority_sort = input("Enter a priority level to filter by: ")
+        matches = [user_task["text"] for user_task in tasks if user_task["priority"].lower() == priority_sort.lower()]
+        print(matches)
     elif choice == "7":
         search_term = input("Enter a keyword to search for: ")
         for user_task in tasks:

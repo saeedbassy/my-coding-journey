@@ -634,3 +634,12 @@ print(f"{name} is {age} years old")
 price = 12.5
 print(f"${price:.2f}")
 ```
+
+### List comprehensions
+**What it is:** A compact way to create a new list by looping through an existing one, all in a single line - instead if writing a full `for` loop with `.append()`.
+
+```python
+numbers = [1, 2, 3, 4, 5]
+doubled = [n * 2 for n in numbers]
+print(doubled)
+```
