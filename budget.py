@@ -33,7 +33,7 @@ while choice != "7":
         total = 0
         for user_expense in expenses:
             total = total + float(user_expense["amount"])
-        print("$" + str(total))
+        print(f"${total:.2f}")
     if choice == "4":
         category_totals = {}
         for user_expense in expenses:

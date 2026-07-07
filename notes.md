@@ -626,3 +626,11 @@ name = "Saeed"
 age = 16
 print(f"{name} is {age} years old")
 ```
+
+### f-string format specifiers (:.2f)
+**What it is:** Adding `:.2f` after a variable inside an f-string rounds it to exactly 2 decimal places - useful for money, so `$12.5` displays as `$12.50`.
+
+```python
+price = 12.5
+print(f"${price:.2f}")
+```
