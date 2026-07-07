@@ -10,3 +10,4 @@ A collection of Python projects built while learning to code.
 - **Budget Tracker** (budget.py) - menu-driven expense tracker with add expense, view all expenses, view total spent, view spending broken down by category, delete an expense, and edit an expense, with expenses saved to a file so they persist between runs
 - **Password Generator** (password_generator.py) - generates random passowrds of a user_specified length using a mix of letters, numbers, and symbols, with an option to generate another without restarting the program
 - **Rock, Paper, Scissors** (rock_paper_scissors.py) - plays against a computer opponent that picks randomly, with win/lose/tie logic and an option to play again without restarting the program
+- **Paycheck Calculator** (paycheck_calculator.py) - tracks multiple work shifts (day, hours, hourly rate) and calculates total expeceted earnings, supporting different rates for regular days vs. Sundays/holidays
