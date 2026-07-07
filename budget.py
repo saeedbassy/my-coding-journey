@@ -9,32 +9,33 @@ try:
 except:
     pass
 
-while choice != "7":
+while choice != "8":
     print("1. Add an expense")
     print("2. View expenses")
     print("3. View total spent")
     print("4. View spending by category")
     print("5. Delete an expense")
     print("6. Edit an expense")
-    print("7. Quit")
+    print("7. Search expenses by category")
+    print("8. Quit")
     choice = input("Choose a number: ")
     if choice == "1":
-        expense_amount = float(input("Enter an expense amount: "))
+        expense_amount = float(input("Enter an expense amount: $"))
         expense_category = input("Enter a category: ")
         user_expense = {"amount": expense_amount, "category": expense_category}
         expenses.append(user_expense)
         with open("expenses.txt", "w") as f:
             for user_expense in expenses:
                 f.write(str(user_expense["amount"]) + "|" + user_expense["category"] + "\n")
-    if choice == "2":
+    elif choice == "2":
         for index, user_expense in enumerate(expenses, start=1):
             print(f"{index + 1}. ${user_expense["amount"]} {user_expense["category"]}")
-    if choice == "3":
+    elif choice == "3":
         total = 0
         for user_expense in expenses:
             total = total + float(user_expense["amount"])
         print(f"${total:.2f}")
-    if choice == "4":
+    elif choice == "4":
         category_totals = {}
         for user_expense in expenses:
             master_category = user_expense["category"]
@@ -44,7 +45,7 @@ while choice != "7":
             category_totals[master_category] = category_totals[master_category] + category_sum
         for master_category in category_totals:
             print("$" + str(category_totals[master_category]) + " " + master_category)
-    if choice == "5":
+    elif choice == "5":
         for index, user_expense in enumerate(expenses, start=1):
             print(f"{index + 1}. ${user_expense["amount"]} {user_expense["category"]}")
         delete_expense = input("Enter a nunber to delete: ")
@@ -52,7 +53,7 @@ while choice != "7":
         with open("expenses.txt", "w") as f:
             for user_expense in expenses:
                 f.write(str(user_expense["amount"]) + "|" + user_expense["category"] + "\n")
-    if choice == "6":
+    elif choice == "6":
         for index, user_expense in enumerate(expenses, start=1):
             print(f"{index + 1}. ${user_expense["amount"]} {user_expense["category"]}")
         edit_expense = input("Enter a number to edit: ")
@@ -63,3 +64,7 @@ while choice != "7":
         with open("expenses.txt", "w") as f:
             for user_expense in expenses:
                 f.write(str(user_expense["amount"]) + "|" + user_expense["category"] + "\n")
+    elif choice == "7":
+        search_category = input("Enter a category to search: ")
+        matches = [f"${user_expense['amount']:.2f} {user_expense['category']}" for user_expense in expenses if search_category.lower() == user_expense["category"].lower()]
+        print(matches)
