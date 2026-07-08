@@ -21,12 +21,16 @@ while choice != "8":
     choice = input("Choose a number: ")
     if choice == "1":
         user_task = input("Enter a task: ")
+        valid_priorities = {"high", "medium", "low"}
         user_priority = input("Enter a priority level (high/medium/low): ")
-        new_task = {"text": user_task, "done": False, "priority": user_priority}
-        tasks.append(new_task)
-        with open("tasks.txt", "w") as f:
-            for user_task in tasks:
-                f.write(user_task["text"] + "|" + str(user_task["done"]) + "|" + user_task["priority"] + "\n")
+        if user_priority in valid_priorities:
+            new_task = {"text": user_task, "done": False, "priority": user_priority}
+            tasks.append(new_task)
+            with open("tasks.txt", "w") as f:
+                for user_task in tasks:
+                    f.write(user_task["text"] + "|" + str(user_task["done"]) + "|" + user_task["priority"] + "\n")
+        else:
+            print("Invalid priority level")
     elif choice == "2":
         if len(tasks) == 0:
             print("No tasks yet.")

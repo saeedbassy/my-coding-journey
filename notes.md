@@ -643,3 +643,24 @@ numbers = [1, 2, 3, 4, 5]
 doubled = [n * 2 for n in numbers]
 print(doubled)
 ```
+
+### Sets
+**What it is:** A collection like a list, but it automatically removes duplicates and doesn't preserve order. Created with `{}` (like a dictionary) but without key-value pairs - just values.
+
+```python
+numbers = [1, 2, 2, 3, 3, 3]
+unique_numbers = set(numbers)
+print(unique_numbers)
+```
+
+### Checking membership with `in` and a set
+**What it is:** Checking if a value exists inside a set of allowed options, using `in`. Sets are faster than lists for this kind of check, and they're a natural fit when you have a fixed group of valid choices.
+
+```python
+valid_colors = {"red", "green", "blue"}
+color = "green"
+if color in valid_colors:
+    print("Valid choice")
+else:
+    print("Not a valid choice")
+```
