@@ -664,3 +664,20 @@ if color in valid_colors:
 else:
     print("Not a valid choice")
 ```
+
+### Nested dictionaries
+**What it is:** A dictionary where a value is itself another dictionary - useful for grouping related pieces of information together under one key.
+
+```python
+contact = {"name": "Kayden", "info": {"phone": "555-1234", "city": "Monroeville"}}
+print(contact["info"]["phone"])
+```
+
+### Tuples
+**What it is:** Like a list, but immutable - once created, you can't change, add, or remove items. Written each with parentheses `()` instead of square brackets `[]`. Useful for fixed pairs or groups of values that shouldn't change, like coordinates.
+
+```python
+point = (3, 5)
+print(point[0])
+print(point[1])
+```

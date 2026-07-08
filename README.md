@@ -11,3 +11,4 @@ A collection of Python projects built while learning to code.
 - **Password Generator** (password_generator.py) - generates random passowrds of a user_specified length using a mix of letters, numbers, and symbols, with an option to generate another without restarting the program
 - **Rock, Paper, Scissors** (rock_paper_scissors.py) - plays against a computer opponent that picks randomly, with win/lose/tie logic and an option to play again without restarting the program
 - **Paycheck Calculator** (paycheck_calculator.py) - tracks multiple work shifts (day, hours, hourly rate) and calculates total expeceted earnings, supporting different rates for regular days vs. Sundays/holidays
+- **Habit Tracker** (habit_tracker.py) - menu-driven habit tracker with add habit, view habits (showing completion status and streak count), mark a habit as done, reset a habit's completion, and delete a habit, with habits saved to a file so they persist between runs
