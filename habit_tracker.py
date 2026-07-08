@@ -35,5 +35,14 @@ while choice != "6":
                 else:
                     marker = " "
                     print(f"{index + 1}. [{marker}] {user_habit["text"]} 🔥 {user_habit["status"]["streak_count"]}")
+    if choice == "3":
+        for index, user_habit in enumerate(habits):
+            print(f"{index + 1}. {user_habit["text"]}")
+        mark_done = input("Enter a number to mark as done today: ")
+        habits[int(mark_done) - 1]["status"]["completion"] = True
+        habits[int(mark_done) - 1]["status"]["streak_count"] = habits[int(mark_done) - 1]["status"]["streak_count"] + 1
+        with open("habits.txt", "w") as f:
+            for user_habit in habits:
+                f.write(user_habit["text"] + "|" + str(user_habit["status"]["completion"]) + "|" + str(user_habit["status"]["streak_count"]) + "\n")
     if choice == "6":
         break
