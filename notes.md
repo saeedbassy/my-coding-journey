@@ -681,3 +681,23 @@ point = (3, 5)
 print(point[0])
 print(point[1])
 ```
+
+### Functions returning multiple values
+**What it is:** A function can return more than one value at once, seperated by commas. Python packages them into a tuple automatically, and you can unpack them into seperate variables when you call the function.
+
+```python
+def get_name_and_age():
+    return "Saeed", 16
+
+name, age = get_name_and_age()
+print(name)
+print(age)
+```
+
+### .title()
+**What it is:** Converts the first letter of each word in a string to uppercase, and the rest to lowercase - the opposite direction of `.lower()`. Useful for matching user input against data stored with specific capitalization.
+
+```python
+text = "monday"
+print(text.title())
+```
