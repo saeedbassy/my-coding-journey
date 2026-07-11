@@ -33,3 +33,11 @@ while choice != "5":
         for user_contact in contacts:
             if search_name.lower() in user_contact["name"].lower():
                 print(f"{user_contact["name"]}, {user_contact["info"]["phone"]}, {user_contact["info"]["city"]}")
+    elif choice == "4":
+        for index, user_contact in enumerate(contacts):
+            print(f"{index + 1}. {user_contact["name"]}, {user_contact["info"]["phone"]}, {user_contact["info"]["city"]}")
+        delete_contact = input("Enter a number to delete: ")
+        contacts.pop(int(delete_contact) - 1)
+        with open("contacts.txt", "w") as f:
+            for user_contact in contacts:
+                f.write(user_contact["name"] + "|" + str(user_contact["info"]["phone"]) + "|" + user_contact["info"]["city"] + "\n")
