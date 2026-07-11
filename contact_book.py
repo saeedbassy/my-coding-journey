@@ -1,5 +1,6 @@
 contacts = []
 choice = "0"
+invalid_contact = ""
 
 try:
     with open("contacts.txt", "r") as file:
@@ -18,13 +19,16 @@ while choice != "5":
     choice = input("Choose a number: ")
     if choice == "1":
         user_name = input("Enter a name: ")
-        user_phone = input("Enter a phone number: ")
-        user_city = input("Enter a city: ")
-        user_contact = {"name": user_name, "info": {"phone": user_phone, "city": user_city}}
-        contacts.append(user_contact)
-        with open("contacts.txt", "w") as f:
-            for user_contact in contacts:
-                f.write(user_contact["name"] + "|" + str(user_contact["info"]["phone"]) + "|" + user_contact["info"]["city"] + "\n")
+        if user_name != invalid_contact:
+            user_phone = input("Enter a phone number: ")
+            user_city = input("Enter a city: ")
+            user_contact = {"name": user_name, "info": {"phone": user_phone, "city": user_city}}
+            contacts.append(user_contact)
+            with open("contacts.txt", "w") as f:
+                for user_contact in contacts:
+                    f.write(user_contact["name"] + "|" + str(user_contact["info"]["phone"]) + "|" + user_contact["info"]["city"] + "\n")
+        else:
+            print("Invalid contact!")
     elif choice == "2":
         for user_contact in contacts:
             print(f"{user_contact["name"]}, {user_contact["info"]["phone"]}, {user_contact["info"]["city"]}")
