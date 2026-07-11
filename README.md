@@ -12,3 +12,4 @@ A collection of Python projects built while learning to code.
 - **Rock, Paper, Scissors** (rock_paper_scissors.py) - plays against a computer opponent that picks randomly, with win/lose/tie logic and an option to play again without restarting the program
 - **Paycheck Calculator** (paycheck_calculator.py) - tracks multiple work shifts (day, hours, hourly rate) and calculates total expeceted earnings, supporting different rates for regular days vs. Sundays/holidays
 - **Habit Tracker** (habit_tracker.py) - menu-driven habit tracker with add habit, view habits (showing completion status and streak count), mark a habit as done, reset a habit's completion, and delete a habit, with habits saved to a file so they persist between runs
+- **Contact Book** (contact_book.py) - menu-driven contact manager with add contact, view contacts, search contacts by name, and delete a contact, with contacts saved to a file so they persist between runs
