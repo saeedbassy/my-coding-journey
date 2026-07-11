@@ -77,3 +77,5 @@ while choice != "6":
                 f.write(user_habit["text"] + "|" + str(user_habit["status"]["completion"]) + "|" + str(user_habit["status"]["streak_count"]) + "\n")
     elif choice == "6":
         break
+    else:
+        print("Enter a valid number!")

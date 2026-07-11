@@ -25,3 +25,11 @@ while choice != "5":
         with open("contacts.txt", "w") as f:
             for user_contact in contacts:
                 f.write(user_contact["name"] + "|" + str(user_contact["info"]["phone"]) + "|" + user_contact["info"]["city"] + "\n")
+    elif choice == "2":
+        for user_contact in contacts:
+            print(f"{user_contact["name"]}, {user_contact["info"]["phone"]}, {user_contact["info"]["city"]}")
+    elif choice == "3":
+        search_name = input("Enter a name to search for: ")
+        for user_contact in contacts:
+            if search_name.lower() in user_contact["name"].lower():
+                print(f"{user_contact["name"]}, {user_contact["info"]["phone"]}, {user_contact["info"]["city"]}")
