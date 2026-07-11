@@ -62,5 +62,18 @@ while choice != "6":
         with open("habits.txt", "w") as f:
             for user_habit in habits:
                 f.write(user_habit["text"] + "|" + str(user_habit["status"]["completion"]) + "|" + str(user_habit["status"]["streak_count"]) + "\n")
-    if choice == "6":
+    elif choice == "5":
+        for index, user_habit in enumerate(habits):
+            if user_habit["status"]["completion"] == True:
+                marker = "X"
+                print(f"{index + 1}. [{marker}] {user_habit["text"]} 🔥 {user_habit["status"]["streak_count"]}")
+            else:
+                marker = " "
+                print(f"{index + 1}. [{marker}] {user_habit["text"]} 🔥 {user_habit["status"]["streak_count"]}")
+        delete_habit = input("Enter a number to delete: ")
+        habits.pop(int(delete_habit) - 1)
+        with open("habits.txt", "w") as f:
+            for user_habit in habits:
+                f.write(user_habit["text"] + "|" + str(user_habit["status"]["completion"]) + "|" + str(user_habit["status"]["streak_count"]) + "\n")
+    elif choice == "6":
         break
