@@ -701,3 +701,20 @@ print(age)
 text = "monday"
 print(text.title())
 ```
+
+### Classes (intro)
+**What it is:** A blueprint for creating objects that bundle data (attributes) and behavior (methods) together. Similar in spirit to your dictionaries, but a class can also define functions that act on its own data.
+
+```python
+class Habit:
+    def __init__(self, name):
+        self.name = name
+        self.completion = False
+        self.streak_count = 0
+
+my_habit = habit("2 rak'ahs before Fajr")
+print(my_habit.name)
+print(my_habit.completion)
+```
+
+**Key terms:** `__init__` runs automatically whenever you create a new object. `self` refers to "this specific object" - it's how the class knows which object's data it's working with.

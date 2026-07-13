@@ -1,5 +1,6 @@
 habits = []
 choice = "0"
+invalid_habit = ""
 
 try:
     with open("habits.txt", "r") as file:
@@ -19,11 +20,14 @@ while choice != "6":
     choice = input("Choose a number: ")
     if choice == "1":
         user_habit = input("Enter a habit: ")
-        new_habit = {"text": user_habit, "status": {"completion": False, "streak_count": 0}}
-        habits.append(new_habit)
-        with open("habits.txt", "w") as f:
-            for user_habit in habits:
-                f.write(user_habit["text"] + "|" + str(user_habit["status"]["completion"]) + "|" + str(user_habit["status"]["streak_count"]) + "\n")
+        if user_habit != invalid_habit:
+            new_habit = {"text": user_habit, "status": {"completion": False, "streak_count": 0}}
+            habits.append(new_habit)
+            with open("habits.txt", "w") as f:
+                for user_habit in habits:
+                    f.write(user_habit["text"] + "|" + str(user_habit["status"]["completion"]) + "|" + str(user_habit["status"]["streak_count"]) + "\n")
+        else:
+            print("Invalid habit!")
     elif choice == "2":
         if len(habits) == 0:
             print("No habits yet.")
