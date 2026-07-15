@@ -78,3 +78,7 @@ while choice != "8":
         search_category = input("Enter a category to search: ")
         matches = [f"{index + 1}. ${user_expense['amount']:.2f} {user_expense['category']}" for user_expense in expenses if search_category.lower() == user_expense["category"].lower()]
         print(matches)
+    elif choice == "8":
+        break
+    else:
+        print("Invalid choice, please try again.")

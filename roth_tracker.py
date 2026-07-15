@@ -1,5 +1,6 @@
 contributions = []
 choice = "0"
+contributions_total = 0
 
 try:
     with open("contributions.txt", "r") as file:
@@ -23,3 +24,14 @@ while choice != "4":
         with open("contributions.txt", "w") as f:
             for user_contribution in contributions:
                 f.write(user_contribution["date"] + "|" + str(user_contribution["amount"]) + "\n")
+    elif choice == "2":
+        for user_contribution in contributions:
+            print(f"{user_contribution["date"]} - ${user_contribution["amount"]:.2f}")
+    elif choice == "3":
+        for user_contribution in contributions:
+            contributions_total = contributions_total + user_contribution["amount"]
+        print(f"${contributions_total:.2f}")
+    elif choice == "4":
+        break
+    else:
+        print("Invalid choice, please try again.")

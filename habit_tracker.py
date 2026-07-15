@@ -82,4 +82,4 @@ while choice != "6":
     elif choice == "6":
         break
     else:
-        print("Enter a valid number!")
+        print("Invalid choice, please try again.")

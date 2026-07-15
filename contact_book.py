@@ -49,3 +49,7 @@ while choice != "5":
         with open("contacts.txt", "w") as f:
             for user_contact in contacts:
                 f.write(user_contact["name"] + "|" + str(user_contact["info"]["phone"]) + "|" + user_contact["info"]["city"] + "\n")
+    elif choice == "5":
+        break
+    else:
+        print("Invalid choice, please try again.")
